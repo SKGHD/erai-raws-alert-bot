@@ -75,4 +75,5 @@ while True:
   print(f"Current Time : {datetime.now(timezone('Asia/Kolkata'))}")
   print(f'I have looped for {counter} times since server start')
   print(f'I will now sleep for 15 mins')
+  counter += 1
   time.sleep(900)
