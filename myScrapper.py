@@ -1,18 +1,18 @@
-import feedparser, requests, time
+import feedparser, requests, time , os
 import aria2p , pymongo
 from pymongo import MongoClient
 from datetime import datetime
 from pytz import timezone
 
 
-#### aria2 configuration ###
+############## aria2 configuration ################
 aria2 = aria2p.API(
-    aria2p.Client(
-        host="http://sgaria2.herokuapp.com",
-        port=80,
-        secret="sgaria2"
-    )
+    aria2p.Client(os.environ.get("ARIA_CONFIG"))
 )
+############### Telegram Configuration #############
+bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
+bot_chatID = os.environ.get("TELEGRAM_CHAT_ID")
+
 counter = 1
 SERVER_START_TIME = datetime.now(timezone('Asia/Kolkata'))
 while True:
@@ -25,9 +25,7 @@ while True:
     filehandle.close()
 
   def sendMsg(k):
-    msg = f"New episode available = {namesList[k]} "      
-    bot_token = '991187907:AAHrIfm5-JBcJP8n9PvxtqQdLCfzyCpt620'
-    bot_chatID = "465321818"
+    msg = f"New episode available = {namesList[k]} " 
     send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=HTML&text=' + msg
     requests.get(send_text)
     ### Adding to my Download tasks
@@ -44,7 +42,7 @@ while True:
   def updateContent():
     # get all name: key values and store them in a list called completedJobs then return (completedJobs)
     global collection, db, cluster
-    cluster = MongoClient("mongodb+srv://skghd:X3nS3WfJFVmHMAiA@cluster0.p5fqo.mongodb.net/horriblesubsbot?retryWrites=true&w=majority")
+    cluster = MongoClient(os.environ.get("MONGO_DRIVER_KEY"))
     db = cluster["horriblesubsbot"]
     collection = db["completedjobs"]
     completedJobs = []
