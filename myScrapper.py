@@ -1,17 +1,21 @@
-import feedparser, requests, time , os
+import feedparser, requests, time 
 import aria2p , pymongo
 from pymongo import MongoClient
 from datetime import datetime
 from pytz import timezone
-
+from os import environ as env
 
 ############## aria2 configuration ################
 aria2 = aria2p.API(
-    aria2p.Client(os.environ.get("ARIA_CONFIG"))
+    aria2p.Client(
+        host=env.get("ARIA_HOST"),
+        port=env.get("ARIA_PORT"),
+        secret=env.get("ARIA_SECRET")
+    )
 )
 ############### Telegram Configuration #############
-bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
-bot_chatID = os.environ.get("TELEGRAM_CHAT_ID")
+bot_token = env.get("TELEGRAM_BOT_TOKEN")
+bot_chatID = env.get("TELEGRAM_CHAT_ID")
 
 counter = 1
 SERVER_START_TIME = datetime.now(timezone('Asia/Kolkata'))
@@ -42,7 +46,7 @@ while True:
   def updateContent():
     # get all name: key values and store them in a list called completedJobs then return (completedJobs)
     global collection, db, cluster
-    cluster = MongoClient(os.environ.get("MONGO_DRIVER_KEY"))
+    cluster = MongoClient(env.get("MONGO_DRIVER_KEY"))
     db = cluster["horriblesubsbot"]
     collection = db["completedjobs"]
     completedJobs = []
