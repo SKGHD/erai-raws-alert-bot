@@ -1,1 +1,1 @@
-worker: python myScrapper.py
+worker: python script.py
