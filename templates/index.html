@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block header %}
+
 <div class="jumbotron shadow">
   <p class="h3 text-center">Welcome to Anime Alert Bot</p>
   <blockquote class="blockquote w-75 mx-auto text-justify">
@@ -10,7 +11,7 @@
 
 <div class="container">
   <p class="h2 d-flex justify-content-center">My Anime List</p>
-  <p class="h3 d-flex justify-content-center">
+  <p class="lead d-flex justify-content-center">
     These are the list of anime saved in my DB!
   </p>
 </div>
@@ -18,7 +19,8 @@
 <div class="container w-50">
   <ul class="list-group">
     {% for anime in mylist %}
-    <li class="list-group-item">{{anime}}</li>
+    <li class="list-group-item text-center">{{anime}}</li>
     {% endfor %}
   </ul>
 </div>
+{% endblock %} {% block footer %} {% endblock %}

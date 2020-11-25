@@ -1,14 +1,11 @@
 from flask import Flask, render_template
-from script import fetchData, storeData
-from handlers import createConnectionToDB
-
+from handlers import fetchData, storeData
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    cluster, db = createConnectionToDB()
     animeList = storeData(fetchData('animelist'))
     return render_template('index.html', mylist=animeList)
 

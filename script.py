@@ -4,7 +4,7 @@ from datetime import datetime
 from pytz import timezone
 import shortuuid
 ### Module imports ###
-from config import aria2p
+from config import connectAria2RPC
 from handlers import *
 
 

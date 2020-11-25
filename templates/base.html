@@ -24,16 +24,23 @@
               ><img
                 src="https://www.flaticon.com/svg/static/icons/svg/25/25231.svg"
                 alt="Github"
-                width="50"
-                height="50"
+                width="40"
+                height="40"
             /></a>
           </li>
         </ul>
       </div>
     </nav>
-    <p class="text-center mt-5 text-muted fixed-bottom">
-      &copy; Sangram Gorai 2021
-    </p>
-    {% block content %} {% endblock %}
+    {% block header %} {% endblock %}
+
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark mt-5">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3 text-white">
+        © 2020 Copyright:
+        <a href="http://sangramgorai.online"> sangramgorai.online</a>
+      </div>
+    </footer>
+    {% block footer %} {% endblock %}
   </body>
 </html>
