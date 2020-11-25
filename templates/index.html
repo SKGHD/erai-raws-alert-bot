@@ -15,6 +15,33 @@
     These are the list of anime saved in my DB!
   </p>
 </div>
+<!-- Adding item form -->
+
+<div class="container" style="display: flex; place-content: center">
+  <form action="{{url_for('index')}}" method="get" class="form-inline">
+    <label for="nameInput" class="sr-only">Name</label>
+    <input
+      type="text"
+      required
+      placeholder="Enter anime name"
+      name="nameInput"
+      class="form-control mb-2 mr-sm-2"
+    />
+    <button class="btn btn-dark mb-2" type="submit">Add</button>
+  </form>
+</div>
+{% if anime != None %}
+<div class="container" style="display: flex; place-content: center">
+  <p
+    class="alert alert-success mr-sm-2"
+    role="alert"
+    style="width: max-content"
+  >
+    Yay! <strong> {{anime}} </strong> successfully added to the database! 😀
+  </p>
+</div>
+{% endif %}
+
 <!-- for loop using jinja templating -->
 <div class="container anime-list">
   <ul class="list-group">
