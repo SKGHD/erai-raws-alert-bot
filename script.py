@@ -1,56 +1,20 @@
 import feedparser
-import requests
 import time
-import aria2p
-from pymongo import MongoClient
 from datetime import datetime
 from pytz import timezone
-from os import environ as env
 import shortuuid
+### Module imports ###
+from config import aria2p
+from handlers import *
 
 
-############## aria2 configuration ################
-aria2 = aria2p.API(
-    aria2p.Client(
-        host=env.get("ARIA_HOST"),
-        port=env.get("ARIA_PORT"),
-        secret=env.get("ARIA_SECRET")
-    )
-)
-############### Telegram Configuration #############
-bot_token = env.get("TELEGRAM_BOT_TOKEN")
-bot_chatID = env.get("TELEGRAM_CHAT_ID")
+############## Connecting to Aria2 RPC Server #########
+
+aria2 = connectAria2RPC()
+
 
 counter = 1
 SERVER_START_TIME = datetime.now(timezone('Asia/Kolkata'))
-
-### Creating Connection to Database server ###
-cluster = MongoClient(env.get("MONGO_DRIVER_KEY"))
-db = cluster["horriblesubsbot"]
-
-
-# fetching data from mongo server
-def fetchData(collectionName):
-    collection = db[collectionName]
-    return collection
-
-
-# storing fetched data to a list
-def storeData(collection):
-    documentList = []
-    results = collection.find({})
-    for result in results:
-        documentList.append(result["name"])
-    return documentList
-
-# Sending msg to telegram bot
-
-
-def sendMsg(episodeName):
-    msg = f"New episode available = {episodeName} "
-    send_text = 'https://api.telegram.org/bot' + bot_token + \
-        '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=HTML&text=' + msg
-    requests.get(send_text)
 
 
 while True:

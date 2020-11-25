@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+<div class="jumbotron shadow">
+  <p class="h3 text-center">Welcome to Anime Alert Bot</p>
+  <blockquote class="blockquote w-75 mx-auto text-justify">
+    As the name suggests Anime Alert Bot alerts you by sending a notification to
+    you on your telegram app when a new episode of your favorite anime is
+    available to watch!
+  </blockquote>
+</div>
+
+<div class="container">
+  <p class="h2 d-flex justify-content-center">My Anime List</p>
+  <p class="h3 d-flex justify-content-center">
+    These are the list of anime saved in my DB!
+  </p>
+</div>
+<!-- for loop using jinja templating -->
+<div class="container w-50">
+  <ul class="list-group">
+    {% for anime in mylist %}
+    <li class="list-group-item">{{anime}}</li>
+    {% endfor %}
+  </ul>
+</div>
