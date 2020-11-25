@@ -1,4 +1,4 @@
 ReadMe.txt
 .env
 .vscode/
-Procfile
+__pycache__

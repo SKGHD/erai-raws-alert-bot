@@ -2,7 +2,9 @@ import aria2p
 from os import environ as env
 from pymongo import MongoClient
 from dotenv import load_dotenv
-load_dotenv()
+
+if env.get("APP_ENV") == "testing":
+    load_dotenv()
 
 
 ############## aria2 configuration ################
