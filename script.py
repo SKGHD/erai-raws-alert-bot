@@ -19,7 +19,7 @@ SERVER_START_TIME = datetime.now(timezone('Asia/Kolkata'))
 
 while True:
     currentTime = datetime.now(timezone('Asia/Kolkata'))
-    getList = feedparser.parse("https://www.erai-raws.info/rss-720-magnet")
+    getList = feedparser.parse("https://www.erai-raws.info/episodes/feed/?res=720p&type=magnet&subs%5B0%5D=us")
     namesList = []
     magnetList = []
     ########## Getting list of anime from DB############
